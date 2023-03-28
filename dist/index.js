@@ -48,6 +48,11 @@ function run() {
             required: true,
             trimWhitespace: true
         });
+        console.log({
+            core,
+            github,
+            env: process.env
+        });
         const failOnJobError = core.getBooleanInput('failOnJobError', {
             required: false
         });
@@ -93,7 +98,7 @@ function getStatusOfJob(jobName) {
             owner: context.repo.owner,
             repo: context.repo.repo,
             run_id: context.runId,
-            attempt_number: context.runNumber
+            attempt_number: 1
         });
         const jobToWait = jobs.find(job => job.name === jobName);
         return jobToWait;

@@ -8,6 +8,12 @@ async function run(): Promise<void> {
     trimWhitespace: true
   })
 
+  console.log({
+    core,
+    github,
+    env: process.env
+  })
+
   const failOnJobError: boolean = core.getBooleanInput('failOnJobError', {
     required: false
   })
@@ -64,7 +70,7 @@ async function getStatusOfJob(jobName: string) {
     owner: context.repo.owner,
     repo: context.repo.repo,
     run_id: context.runId,
-    attempt_number: context.runNumber
+    attempt_number: 1
   })
 
   const jobToWait = jobs.find(job => job.name === jobName)
