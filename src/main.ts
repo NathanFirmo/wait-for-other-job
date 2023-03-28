@@ -51,6 +51,13 @@ async function getStatusOfJob(jobName: string) {
     auth: token
   })
 
+  console.log({
+    owner: context.repo.owner,
+    repo: context.repo.repo,
+    run_id: context.runId,
+    attempt_number: context.runNumber
+  })
+
   const {
     data: { jobs }
   } = await octokit.actions.listJobsForWorkflowRunAttempt({
