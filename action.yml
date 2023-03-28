@@ -10,7 +10,7 @@ inputs:
     description: 'File name of the workflow you wanna wait for'
   failOnJobError:
     required: false
-    description: 'If true, the action will fail case a error happen in the job you are waiting for'
+    description: 'If true, the action will fail case an error happen in the job you are waiting for'
     default: 'false'
 runs:
   using: 'node16'
