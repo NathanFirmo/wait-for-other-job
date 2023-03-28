@@ -13,7 +13,7 @@ async function run(): Promise<void> {
   })
 
   try {
-    core.info(`Waiting until ${job} finish`)
+    core.info(`Waiting until job ${job} ends`)
 
     let jobToWait
     do {

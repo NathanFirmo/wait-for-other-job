@@ -52,7 +52,7 @@ function run() {
             required: false
         });
         try {
-            core.info(`Waiting until ${job} finish`);
+            core.info(`Waiting until job ${job} ends`);
             let jobToWait;
             do {
                 yield new Promise(resolve => setTimeout(resolve, 3000));
