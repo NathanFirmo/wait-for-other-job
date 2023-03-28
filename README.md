@@ -37,3 +37,13 @@ These are the optional inputs for this action:
 | Input | Description |
 | --- | --- |
 | `failOnJobError` | If true, the action will fail case an error happen in the job you are waiting for. |
+
+
+### Why use this action
+
+This action can be useful you to decrease CI execution time helping to parallelize jobs like build, test and deployment.
+
+![Now](https://user-images.githubusercontent.com/79997705/228352106-ea2b6d3e-a010-4a26-b886-35ab4444b4d9.jpg)
+
+
+
