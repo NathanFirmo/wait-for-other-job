@@ -21,6 +21,7 @@ with:
   job: 'job-name'
 ~~~
 
+> OBS.: If you get an error in private repos, use a [Personal Access Token](https://docs.github.com/pt/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) instead.
 
 ### Required Inputs
 The following inputs are required to use this action:
