@@ -1,5 +1,5 @@
 {
-  "name": "typescript-action",
+  "name": "wait-for-other-job",
   "version": "0.0.0",
   "private": true,
   "description": "TypeScript template action",
@@ -8,36 +8,37 @@
     "build": "tsc",
     "format": "prettier --write '**/*.ts'",
     "format-check": "prettier --check '**/*.ts'",
-    "lint": "eslint src/**/*.ts",
     "package": "ncc build --source-map --license licenses.txt",
-    "test": "jest",
-    "all": "npm run build && npm run format && npm run lint && npm run package && npm test"
+    "all": "npm run build && npm run format && npm run package",
+    "release:patch": "HUSKY=0 npm version patch -m 'chore: release version %s' && git push --follow-tags",
+    "release:minor": "HUSKY=0 npm version minor -m 'chore: release version %s' && git push --follow-tags",
+    "release:major": "HUSKY=0 npm version major -m 'chore: release version %s' && git push --follow-tags",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/typescript-action.git"
+    "url": "git+https://github.com/NathanFirmo/wait-for-other-job.git"
   },
   "keywords": [
     "actions",
     "node",
     "setup"
   ],
-  "author": "",
+  "author": "Nathan Firmo",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.10.0"
+    "@actions/core": "^1.10.0",
+    "@actions/github": "^5.1.1",
+    "@octokit/rest": "^19.0.7"
   },
   "devDependencies": {
-    "@types/node": "^18.11.0",
-    "@typescript-eslint/parser": "^4.33.0",
-    "@vercel/ncc": "^0.31.1",
-    "eslint": "^7.32.0",
-    "eslint-plugin-github": "^4.3.2",
-    "eslint-plugin-jest": "^25.3.2",
-    "jest": "^27.2.5",
+    "@commitlint/cli": "^17.5.1",
+    "@commitlint/config-conventional": "^17.4.4",
+    "@types/node": "^18.15.10",
+    "@vercel/ncc": "^0.36.1",
+    "husky": "^8.0.0",
     "js-yaml": "^4.1.0",
-    "prettier": "2.5.1",
-    "ts-jest": "^27.1.2",
-    "typescript": "^4.4.4"
+    "prettier": "^2.8.7",
+    "typescript": "^5.0.2"
   }
 }

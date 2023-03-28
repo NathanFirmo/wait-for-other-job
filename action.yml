@@ -1,11 +1,19 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Wait for other job'
+description: 'Simple action to wait for a specific job'
+author: 'Nathan Firmo'
 inputs:
-  milliseconds: # change this
+  token:
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    description: 'Your GitHub token'
+  job:
+    required: true
+    description: 'File name of the workflow you wanna wait for'
+  failOnJobError:
+    required: false
+    description: 'If true, the action will fail case a error happen in the job you are waiting for'
 runs:
   using: 'node16'
   main: 'dist/index.js'
+branding:
+  icon: 'clock'
+  color: 'gray-dark'   

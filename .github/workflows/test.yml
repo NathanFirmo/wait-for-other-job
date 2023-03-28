@@ -1,4 +1,4 @@
-name: 'build-test'
+name: 'test'
 on: # rebuild any PRs and main branch changes
   pull_request:
   push:
@@ -6,19 +6,27 @@ on: # rebuild any PRs and main branch changes
       - main
       - 'releases/*'
 
+run-name: Test
+
 jobs:
-  build: # make sure build/ci work properly
+  sample-job:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: |
-          npm install
-      - run: |
-          npm run all
+      - uses: actions/checkout@v3
+        with:
+         token: ${{ secrets.GITHUB_TOKEN  }}
+
+      - name: Wait 
+        run: |
+          sleep 30
+
   test: # make sure the action works on a clean machine without building
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: ./
+      - uses: actions/checkout@v3
+
+      - name: Run action
+        uses: ./
         with:
-          milliseconds: 1000
+          token: ${{ secrets.GITHUB_TOKEN }}
+          job: 'sample-job'
