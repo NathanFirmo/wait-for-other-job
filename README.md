@@ -14,11 +14,11 @@ This action provides a simple way to wait for a specific job (in current workflo
 ## Usage
 
 ~~~yml
-name: Wait 
-uses: NathanFirmo/wait-for-other-job@v1
-with:
-  token: ${{ secrets.GITHUB_TOKEN }}
-  job: 'job-name'
+- name: Wait 
+  uses: NathanFirmo/wait-for-other-job@v1
+  with:
+    token: ${{ secrets.GITHUB_TOKEN }}
+    job: 'job-name'
 ~~~
 
 > OBS.: If you get an error in private repos, use a [Personal Access Token](https://docs.github.com/pt/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) instead.
