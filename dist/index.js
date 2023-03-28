@@ -83,12 +83,6 @@ function getStatusOfJob(jobName) {
         const octokit = new rest_1.Octokit({
             auth: token
         });
-        console.log({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            run_id: context.runId,
-            attempt_number: Number(process.env.GITHUB_RUN_ATTEMPT)
-        });
         const { data: { jobs } } = yield octokit.actions.listJobsForWorkflowRunAttempt({
             owner: context.repo.owner,
             repo: context.repo.repo,

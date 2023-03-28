@@ -50,13 +50,6 @@ async function getStatusOfJob(jobName: string) {
     auth: token
   })
 
-  console.log({
-    owner: context.repo.owner,
-    repo: context.repo.repo,
-    run_id: context.runId,
-    attempt_number: Number(process.env.GITHUB_RUN_ATTEMPT)
-  })
-
   const {
     data: { jobs }
   } = await octokit.actions.listJobsForWorkflowRunAttempt({
