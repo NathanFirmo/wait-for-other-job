@@ -36,4 +36,4 @@ These are the optional inputs for this action:
 
 | Input | Description |
 | --- | --- |
-| `failOnJobError` | If true, the action will fail case a error happen in the job you are waiting for. |
+| `failOnJobError` | If true, the action will fail case an error happen in the job you are waiting for. |
