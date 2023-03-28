@@ -8,12 +8,6 @@ async function run(): Promise<void> {
     trimWhitespace: true
   })
 
-  console.log({
-    core,
-    github,
-    env: process.env
-  })
-
   const failOnJobError: boolean = core.getBooleanInput('failOnJobError', {
     required: false
   })
@@ -21,12 +15,11 @@ async function run(): Promise<void> {
   try {
     core.info(`Waiting until ${job} finish`)
 
-    let jobToWait = await getStatusOfJob(job)
-
-    while (jobToWait?.status === 'in_progress') {
+    let jobToWait
+    do {
       await new Promise(resolve => setTimeout(resolve, 3000))
       jobToWait = await getStatusOfJob(job)
-    }
+    } while (jobToWait?.status === 'in_progress')
 
     if (jobToWait?.conclusion === 'failure' && failOnJobError) {
       throw new Error(`The job ${job} have failed`)
@@ -61,7 +54,7 @@ async function getStatusOfJob(jobName: string) {
     owner: context.repo.owner,
     repo: context.repo.repo,
     run_id: context.runId,
-    attempt_number: context.runNumber
+    attempt_number: Number(process.env.GITHUB_RUN_ATTEMPT)
   })
 
   const {
@@ -70,7 +63,7 @@ async function getStatusOfJob(jobName: string) {
     owner: context.repo.owner,
     repo: context.repo.repo,
     run_id: context.runId,
-    attempt_number: 1
+    attempt_number: Number(process.env.GITHUB_RUN_ATTEMPT)
   })
 
   const jobToWait = jobs.find(job => job.name === jobName)

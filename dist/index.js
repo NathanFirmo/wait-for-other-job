@@ -48,21 +48,16 @@ function run() {
             required: true,
             trimWhitespace: true
         });
-        console.log({
-            core,
-            github,
-            env: process.env
-        });
         const failOnJobError = core.getBooleanInput('failOnJobError', {
             required: false
         });
         try {
             core.info(`Waiting until ${job} finish`);
-            let jobToWait = yield getStatusOfJob(job);
-            while ((jobToWait === null || jobToWait === void 0 ? void 0 : jobToWait.status) === 'in_progress') {
+            let jobToWait;
+            do {
                 yield new Promise(resolve => setTimeout(resolve, 3000));
                 jobToWait = yield getStatusOfJob(job);
-            }
+            } while ((jobToWait === null || jobToWait === void 0 ? void 0 : jobToWait.status) === 'in_progress');
             if ((jobToWait === null || jobToWait === void 0 ? void 0 : jobToWait.conclusion) === 'failure' && failOnJobError) {
                 throw new Error(`The job ${job} have failed`);
             }
@@ -92,13 +87,13 @@ function getStatusOfJob(jobName) {
             owner: context.repo.owner,
             repo: context.repo.repo,
             run_id: context.runId,
-            attempt_number: context.runNumber
+            attempt_number: Number(process.env.GITHUB_RUN_ATTEMPT)
         });
         const { data: { jobs } } = yield octokit.actions.listJobsForWorkflowRunAttempt({
             owner: context.repo.owner,
             repo: context.repo.repo,
             run_id: context.runId,
-            attempt_number: 1
+            attempt_number: Number(process.env.GITHUB_RUN_ATTEMPT)
         });
         const jobToWait = jobs.find(job => job.name === jobName);
         return jobToWait;
