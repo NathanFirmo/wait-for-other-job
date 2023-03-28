@@ -11,6 +11,7 @@ inputs:
   failOnJobError:
     required: false
     description: 'If true, the action will fail case a error happen in the job you are waiting for'
+    default: 'false'
 runs:
   using: 'node16'
   main: 'dist/index.js'
