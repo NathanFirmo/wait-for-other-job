@@ -15,7 +15,7 @@ This action provides a simple way to wait for a specific job (in current workflo
 
 ~~~yml
 - name: Wait 
-  uses: NathanFirmo/wait-for-other-job@v1
+  uses: NathanFirmo/wait-for-other-job@v1.1.1
   with:
     token: ${{ secrets.GITHUB_TOKEN }}
     job: 'job-name'
