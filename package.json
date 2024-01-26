@@ -34,7 +34,7 @@
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.4",
-    "@types/node": "^20.10.1",
+    "@types/node": "^20.11.7",
     "@vercel/ncc": "^0.38.1",
     "husky": "^8.0.0",
     "js-yaml": "^4.1.0",
