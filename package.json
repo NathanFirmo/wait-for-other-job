@@ -39,6 +39,6 @@
     "husky": "^9.1.7",
     "js-yaml": "^4.1.0",
     "prettier": "^3.6.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.9.3"
   }
 }
